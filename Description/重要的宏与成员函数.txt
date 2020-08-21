@@ -1,0 +1,28 @@
+
+<<----实现消息与消息处理函数映射的宏组---->>
+DECLARE_MESSAGE_MAP()                //类体中声明
+	当需要将发送给此类所对应的的窗口消息与此类的成员函数绑定在一起的时候需要在类体里声明此宏为	protected类型。
+
+
+BEGIN_MESSAGE_MAP(CSampleDialog,CDialogEx)   //源文件中声明
+					//在此宏的中间为消息和消息处理函数之间绑定关系的声明
+					//不同类型的消息使用不同的宏来声明
+	ON_WM_PAINT()			//窗口消息使用预定义的宏
+	ON_BN_CLICKED(IDC_BUTTON1,&CSampleDialogDlg::OnClickedButton1)//按钮消息使用预定义的宏
+					//此外还有控制消息
+					//自定义消息
+					//等各种消息，【以后添加】
+END_MESSAGE_MAP()
+<<---------------------------------------------------->>
+
+
+<<----实现组件与类成员变量映射的成员函数---->>
+Virtual void DoDataExchange(CDataExchange* pDX);  //类体中声明为protected类型
+
+void CSampleDialog::DoDataExChange(CDataExChange* pDX){
+	CDialogEx::DoDataExChange(pDX);
+	DDX_Control(pDX,IDC_BUTTON1,m_butButton1);   //此处实现了成员变量与ID为IDC_BUTTON1的控件之间的绑定
+						//DoDataExChange函数实现了DDX/DDV支持
+						//具体DDX/DDV的含义需要【以后添加】				
+}
+<<---------------------------------------------------->>
