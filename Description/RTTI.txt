@@ -1,0 +1,39 @@
+<<----声明与实现RTTI的宏---->>
+DECLARE_DYNAMIC   and IMPLEMENT_DYNAMIC 	DECLARE_DYNCREATE and IMPLEMENT_DYNCREATE	DECLARE_DECLARE_SERIAL and IMPLEMENT_SERIAL  都可以实现RTTI
+
+例：
+//--header.h
+class CPerson : public CObject
+{
+   DECLARE_DYNAMIC(CPerson)  //在.h文件中声明
+
+   // other declarations
+};
+//--source.cpp
+IMPLEMENT_DYNAMIC(CPerson, CObject)   //在.cpp文件中实现
+
+<<----动态识别对象所属类---->>
+RUNTIME_CLASS 宏返回一个CRuntimeClass类的对象
+例：
+CRuntimeClass *pClass = RUNTIME_CLASS(CObject);
+
+CObject :: IsKindOf 函数获取一个CRuntimeClass对象测试一个对象是否属于一个特别的类，如果一个对象是一个类的对象或者是一个类的子类的对象，则返回非零，否则返回零。
+
+例：
+CObject pObject = new CPerson();
+if(pObject!=NULL&&pObject->IsKindOf(RUNTIME_CLASS(CPerson)){
+	//pObject的对象是CPerson类的实例
+}else{
+	//pObject的对象不是是CPerson类或者CPerson类的子类的实例	
+}
+
+<<----动态创建对象---->>
+使用CRuntimeClass类的CreateObject函数创建一个所给类的对象，成功返回创建后的指针，否则返回NULL。
+例：
+CRuntimeClass *pClass = RUNTIME_CLASS(CPerson);
+CPerson * pPerson = pClass->CreateObject();
+if(pPerson!=NULL){
+	//创建成功
+}else{
+	//创建失败
+}
