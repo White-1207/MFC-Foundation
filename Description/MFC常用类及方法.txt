@@ -51,3 +51,7 @@ CDialog::EndDialog
 */
 CDialog::OnInitDialog
 
+/*
+* @brief 从菜单中删除一项 
+*/
+CMenu::DeleteMenu
