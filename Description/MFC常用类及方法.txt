@@ -1,7 +1,22 @@
+CObject类及其常用 派生类
+CObject-
+	   |-CMenu
+	   
+
+/*
+* @brief 从菜单中删除一项 
+*/
+CMenu::DeleteMenu
+
+/*
+分割线**************
+*/
 窗口类及其常用派生类
 CWnd-
 	|-CDialog
 	|-CButton,CEdit,CCombBox,CIPAddressCrtl,CTreeCtrl,CImageList
+
+
 /*
 * @brief 设置窗口标题或者控件的字符串
 * @discussion 调用此函数后会向调用窗口发送WM_SETTEXT消息
@@ -51,7 +66,5 @@ CDialog::EndDialog
 */
 CDialog::OnInitDialog
 
-/*
-* @brief 从菜单中删除一项 
-*/
-CMenu::DeleteMenu
+
+
