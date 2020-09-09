@@ -1,0 +1,53 @@
+窗口类及其常用派生类
+CWnd-
+	|-CDialog
+	|-CButton,CEdit,CCombBox,CIPAddressCrtl,CTreeCtrl,CImageList
+/*
+* @brief 设置窗口标题或者控件的字符串
+* @discussion 调用此函数后会向调用窗口发送WM_SETTEXT消息
+*/
+CWnd::SetWindowText
+CWnd::SetWindowTextA  多字节字符集下
+CWnd::SetWindowTextW  宽字节字符集下
+
+/*
+* @brief 设置窗口是否可以获得鼠标或者键盘焦点
+*/
+CWnd::EnableWindow
+
+/*
+* @brief 获取窗口的父窗口、拥有者窗口的CWnd对象指针，m_hWnd
+*/
+CWnd::GetParent
+CWnd::GetOwner
+CWnd::GetSafeHwnd 返回窗口的m_hWnd，如果此CWnd没有关联一个窗口或者使用空指针调用此函数则返回NULL
+
+/*
+* @brief 取得窗口的样式和是否在显示
+* @discussion 经常用于获取对话框的当前样式，设置显示属性，和判断窗口是否在显示
+*/
+CWnd::GetStyle
+CWnd::ShowWindow  
+CWnd::IsWindowVisible 会检测WS_VISIBLE的样式位的状态
+
+/*
+* @brief 获取窗口的位置和设置窗口的位置
+* @discussion 经常用于确定对话框和对话框内控件的位置
+*/
+CWnd::GetWindowRect   获取窗口的位置，位置坐标系为窗口坐标系
+CWnd::SetWindowPos	  设置窗口的位置，设置其Z轴排序、左上角的坐标、宽和高的值和大小与位置选项
+
+/*
+* @brief 创建和销毁非模态和模态对话框
+*/
+CDialog::Create
+CDialog::Destroy
+CDialog::DoModal
+CDialog::EndDialog
+
+/*
+* @brief 初始化对话框
+* @discussion 在调用Create/DoModal后会立即发送WM_INITDIALOG 消息，此函数用于响应此消息 
+*/
+CDialog::OnInitDialog
+
