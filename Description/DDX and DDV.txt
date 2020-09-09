@@ -1,0 +1,22 @@
+DDX与DDV在一个虚函数DoDataExchange中调用，接受一个CDataExchange对象的指针pDX，这个对象的成员m_bSaveAndValidate的值决定了数据的走向：
+	如果!m_bSaveAndValidate，那么将成员变量数据加载到controls
+	如果m_bSaveAndValidate，那么将数据从controls加载到成员变量。
+但是，不要自己调用DoDataExchange函数，而是通过UpdateData函数来调用，传给UpdateData的值决定了pDX指向对象的m_bSaveAndValidate的值。
+
+
+DDX进行对话框数据与成员变量的交换，例如
+DDX_Text
+DDX_Check
+DDC_Radio
+DDX_LBString
+
+
+DDV进行对话框数据的验证，例如
+DDV_MinMaxByte
+DDV_MinMaxShort
+DDV_MinMaxInt
+
+DDV只会在对话框关闭时进行数据监测，如果不符合的话就会停止关闭对话框提示用户，哪里出现了错误。
+
+完整预定义的DDX/DDV在afxdd_.h中可以找到
+我们也可以自己定义DDX/DDV逻辑
